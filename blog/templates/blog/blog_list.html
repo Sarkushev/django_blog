@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><title>Блог</title></head>
+<body>
+  <h1>Все статьи</h1>
+  <ul>
+    {% for blog in blogs %}
+      <li><a href="{% url 'blog:detail' blog.pk %}">{{ blog.title }}</a></li>
+    {% empty %}
+      <li>Пока нет статей</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>
