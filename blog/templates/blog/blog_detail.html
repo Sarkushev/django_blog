@@ -6,6 +6,10 @@
   <p class="blog-id">ID: {{ blog.pk }}</p>
   <div class="content">{{ blog.content }}</div>
   <p class="likes">Лайки: {{ blog.likes }}</p>
+  <p>
+    <a href="{% url 'blog:update' blog.pk %}">Изменить</a> |
+    <a href="{% url 'blog:delete' blog.pk %}">Удалить</a>
+  </p>
   <a href="{% url 'blog:list' %}">Назад к списку</a>
 </body>
 </html>

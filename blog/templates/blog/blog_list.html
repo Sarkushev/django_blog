@@ -3,9 +3,14 @@
 <head><meta charset="utf-8"><title>Блог</title></head>
 <body>
   <h1>Все статьи</h1>
+  <p><a href="{% url 'blog:create' %}">Создать статью</a></p>
   <ul>
     {% for blog in blogs %}
-      <li><a href="{% url 'blog:detail' blog.pk %}">{{ blog.title }}</a></li>
+      <li>
+        <a href="{% url 'blog:detail' blog.pk %}">{{ blog.title }}</a>
+        (<a href="{% url 'blog:update' blog.pk %}">изменить</a>,
+        <a href="{% url 'blog:delete' blog.pk %}">удалить</a>)
+      </li>
     {% empty %}
       <li>Пока нет статей</li>
     {% endfor %}

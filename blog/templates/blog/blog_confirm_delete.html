@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><title>Удаление статьи</title></head>
+<body>
+  <h1>Удаление статьи</h1>
+  <form method="post">
+    {% csrf_token %}
+    <p>Вы действительно хотите удалить статью «{{ blog.title }}»?</p>
+    <button type="submit">Да, удалить</button>
+  </form>
+  <a href="{% url 'blog:list' %}">Отмена</a>
+</body>
+</html>

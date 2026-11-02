@@ -1,8 +1,18 @@
 from django.db.models import F
-from django.views.generic import DetailView, ListView
+from django.urls import reverse_lazy
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    DetailView,
+    ListView,
+    UpdateView,
+)
 
+from .forms import BlogForm
 from .models import Blog
 
+
+# ----------------------------- R (Read) -----------------------------
 
 class BlogListView(ListView):
     model = Blog
@@ -25,3 +35,31 @@ class BlogDetailView(DetailView):
         # --- конец логики лайков ---
 
         return blog
+
+
+# ----------------------------- C (Create) ---------------------------
+
+class BlogCreateView(CreateView):
+    model = Blog
+    form_class = BlogForm
+    template_name = "blog/blog_form.html"
+    success_url = reverse_lazy("blog:list")
+
+
+# ----------------------------- U (Update) ---------------------------
+
+class BlogUpdateView(UpdateView):
+    model = Blog
+    form_class = BlogForm
+    template_name = "blog/blog_form.html"
+    context_object_name = "blog"
+    success_url = reverse_lazy("blog:list")
+
+
+# ----------------------------- D (Delete) ---------------------------
+
+class BlogDeleteView(DeleteView):
+    model = Blog
+    template_name = "blog/blog_confirm_delete.html"
+    context_object_name = "blog"
+    success_url = reverse_lazy("blog:list")
